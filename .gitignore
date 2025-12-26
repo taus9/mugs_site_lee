@@ -1,0 +1,27 @@
+# Binaries and executables
+*.exe
+*.exe~
+*.dll
+*.so
+*.dylib
+
+# Go build artifacts
+*.test
+*.out
+*.a
+*.o
+
+# Output of go build/go test
+bin/
+testbin/
+cmd/**/bin/
+**/*.generated.go
+
+# Dependency directories
+vendor/
+
+# IDE/editor settings
+.idea/
+.vscode/
+*.swp
+.DS_Store

@@ -1,0 +1,30 @@
+{{define "base"}}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>{{template "title" .}} - Mugs of Lee County</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="stylesheet" href="/static/css/main.css">
+</head>
+
+<body>
+  <header>
+    <!-- Replace src with your logo path -->
+    <img class="main-logo" src="/static/img/logo.png" alt="Mugs of Lee County Logo" />
+    <h1>Mugs of Lee County</h1>
+  </header>
+
+  <main>
+    {{template "main" .}}
+  </main>
+
+  <footer>
+    <span>
+      Information is provided for informational purposes only and reflects
+      booking records. Individuals are presumed innocent until proven guilty.
+    </span>
+  </footer>
+</body>
+</html>
+{{end}}
