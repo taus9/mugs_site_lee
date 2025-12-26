@@ -8,7 +8,7 @@ import (
 )
 
 type Arrest struct {
-    ID            string    `json:"id"`
+    ID            string `json:"id"`
     BookingNumber string `json:"bookingNumber"`
     BookingDate   string `json:"bookingDate"`
     SurName       string `json:"surName"`
@@ -18,8 +18,12 @@ type Arrest struct {
     ImageBase64   string `json:"image"`
 }
 
-type PageData struct {
-    Arrests []Arrest
+type ViewArrest struct {
+    ID          string
+    FullName    string
+    BookingDate string
+    Age         int
+    ImageBase64 string
 }
 
 func (app *application) fetchArrests() ([]Arrest, error) {
@@ -45,4 +49,52 @@ func (app *application) fetchArrests() ([]Arrest, error) {
     }
 
     return arrests, nil
+}
+
+func toViewModel(a Arrest) ViewArrest {
+    fullName := a.GivenName
+    if a.MiddleName != "" {
+        fullName += " " + a.MiddleName
+    }
+    fullName += " " + a.SurName
+    return ViewArrest{
+        ID: a.ID,
+        FullName: fullName,
+        BookingDate: formatBookingDate(a.BookingDate),
+        Age: calculateAge(a.BirthDate),
+        ImageBase64: a.ImageBase64,
+    }
+}
+
+func calculateAge(birthDate string) int {
+    if birthDate == "" {
+        return 0
+    }
+
+    dob, err := time.Parse("2006-01-02 15:04:05.000", birthDate)
+    if err != nil {
+        return 0
+    }
+
+    today := time.Now()
+    age := today.Year() - dob.Year()
+
+    if today.Month() < dob.Month() ||
+        (today.Month() == dob.Month() && today.Day() < dob.Day()) {
+        age--
+    }
+
+    return age
+}
+
+func formatBookingDate(dateStr string) string {
+    t, err := time.Parse(
+        "2006-01-02 15:04:05.000",
+        dateStr,
+    )
+    if err != nil {
+        return dateStr
+    }
+
+    return t.Format("Jan 2, 2006 3:04 PM")
 }
