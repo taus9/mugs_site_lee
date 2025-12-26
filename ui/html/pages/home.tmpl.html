@@ -1,9 +1,9 @@
 {{define "title"}}Home{{end}}
 
 {{define "main"}}
-  <h3>Under construction...</h3>
+  <!-- <h3>Under construction...</h3> -->
   <div class="arrest-grid">
-    <!-- {{range .Arrests}} -->
+    {{range .Arrests}}
     <div class="arrest-card">
       <img
         src="data:image/jpeg;base64,{{.ImageBase64}}"
@@ -16,6 +16,6 @@
         <p><strong>Booking Date:</strong> {{.BookingDate}}</p>
       </div>
     </div>
-    <!-- {{end}} -->
+    {{end}}
   </div>
 {{end}}
