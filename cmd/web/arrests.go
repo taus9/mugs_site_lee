@@ -15,6 +15,7 @@ type Arrest struct {
 	MiddleName    string `json:"middleName"`
 	BirthDate     string `json:"birthDate"`
 	ImageBase64   string `json:"image"`
+    InCustody     bool   `json:"inCustody"`
 }
 
 type ViewArrest struct {
@@ -23,6 +24,7 @@ type ViewArrest struct {
 	BookingDate   string
 	Age           int
 	ImageBase64   string
+    InCustody     bool
 }
 
 func (app *application) fetchSingleArrestFromAPI(bookingNumber int) (*Arrest, error) {
@@ -86,6 +88,7 @@ func toArrestViewModel(a Arrest) ViewArrest {
 		FullName:      fullName,
 		BookingDate:   formatBookingDate(a.BookingDate),
 		Age:           calculateAge(a.BirthDate),
+        InCustody:     a.InCustody,
 		ImageBase64:   a.ImageBase64,
 	}
 }
