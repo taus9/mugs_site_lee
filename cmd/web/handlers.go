@@ -28,7 +28,7 @@ func (app *application) home(w http.ResponseWriter, r *http.Request) {
 		return
 	}
 
-	err = ts.ExecuteTemplate(w, "home", nil);
+	err = ts.ExecuteTemplate(w, "home", nil)
 	if err != nil {
 		app.serverError(w, err)
 	}
@@ -43,13 +43,13 @@ func (app *application) fetchArrestsFromBackend(w http.ResponseWriter, r *http.R
 
 	fArrests := make([]ViewArrest, 0, len(arrests))
 	for _, a := range arrests {
-		fArrests = append(fArrests, toViewModel(a))
+		fArrests = append(fArrests, toArrestViewModel(a))
 	}
 
 	w.Header().Set("Content-Type", "application/json")
-	
+
 	err = json.NewEncoder(w).Encode(fArrests)
-	
+
 	if err != nil {
 		app.serverError(w, err)
 	}
@@ -72,7 +72,7 @@ func (app *application) bookingView(w http.ResponseWriter, r *http.Request) {
 		return
 	}
 
-	err = ts.ExecuteTemplate(w, "booking", nil);
+	err = ts.ExecuteTemplate(w, "booking", nil)
 	if err != nil {
 		app.serverError(w, err)
 	}
@@ -84,10 +84,10 @@ func (app *application) fetchSingleArrestFromBackend(w http.ResponseWriter, r *h
 		app.notFound(w)
 		return
 	}
-	
+
 	arrest, err := app.fetchSingleArrestFromAPI(bookingNumber)
 	if err != nil {
-		
+
 		if err.Error() == "404 Not Found" {
 			app.notFound(w)
 			return
@@ -96,12 +96,12 @@ func (app *application) fetchSingleArrestFromBackend(w http.ResponseWriter, r *h
 		app.serverError(w, err)
 		return
 	}
-	
-	fArrest := toViewModel(*arrest)
+
+	fArrest := toArrestViewModel(*arrest)
 	w.Header().Set("Content-Type", "application/json")
-	
+
 	err = json.NewEncoder(w).Encode(fArrest)
-	
+
 	if err != nil {
 		app.serverError(w, err)
 	}
