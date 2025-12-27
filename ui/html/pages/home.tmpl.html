@@ -1,7 +1,23 @@
-{{define "title"}}Home{{end}}
+{{define "home"}}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Home - Mugs of Lee County</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="stylesheet" href="/static/css/main.css">
+</head>
 
+<body>
+  <header>
+    <!-- Replace src with your logo path -->
+    <img class="main-logo" src="/static/img/logo.png" alt="Mugs of Lee County Logo" />
+    <h1>Mugs of Lee County</h1>
+  </header>
 
-
+  <main>
+    {{template "spinner"}}
+    <div id="arrest-gird-container" class="arrest-gird"></div>
 <!-- {{define "arrest"}}
   <h3>Under construction...</h3>
   <div class="arrest-grid">
@@ -21,3 +37,16 @@
     {{end}}
   </div>
 {{end}} -->
+  </main>
+
+  <footer>
+    <span>
+      Information is provided for informational purposes only and reflects
+      booking records. Individuals are presumed innocent until proven guilty.
+    </span>
+  </footer>
+  <script src="/static/js/main.js"></script>
+</body>
+</html>
+{{end}}
+
