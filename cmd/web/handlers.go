@@ -1,6 +1,7 @@
 package main
 
 import (
+	"encoding/json"
 	"fmt"
 	"html/template"
 	"net/http"
@@ -8,7 +9,7 @@ import (
 )
 
 type HomePageData struct {
-	Arrests  []ViewArrest
+	Arrests []ViewArrest
 }
 
 func (app *application) home(w http.ResponseWriter, r *http.Request) {
@@ -29,22 +30,28 @@ func (app *application) home(w http.ResponseWriter, r *http.Request) {
 		return
 	}
 
-	// arrests, err := app.fetchArrests()
-	// if err != nil {
-	// 	app.serverError(w, err)
-	// 	return
-	// }
-
-	// fArrests := make([]ViewArrest, 0, len(arrests))
-	// for _, a := range arrests {
-	// 	fArrests = append(fArrests, toViewModel(a))
-	// }
-
-	// data := HomePageData{
-	// 	Arrests: fArrests,
-	// }
-
 	err = ts.ExecuteTemplate(w, "base", nil)
+	if err != nil {
+		app.serverError(w, err)
+	}
+}
+
+func (app *application) fetchArrestsFromBackend(w http.ResponseWriter, r *http.Request) {
+	arrests, err := app.fetchArrestsFromAPI()
+	if err != nil {
+		app.serverError(w, err)
+		return
+	}
+
+	fArrests := make([]ViewArrest, 0, len(arrests))
+	for _, a := range arrests {
+		fArrests = append(fArrests, toViewModel(a))
+	}
+
+	w.Header().Set("Content-Type", "application/json")
+	
+	err = json.NewEncoder(w).Encode(fArrests)
+	
 	if err != nil {
 		app.serverError(w, err)
 	}

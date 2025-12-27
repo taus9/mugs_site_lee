@@ -26,7 +26,7 @@ type ViewArrest struct {
     ImageBase64 string
 }
 
-func (app *application) fetchArrests() ([]Arrest, error) {
+func (app *application) fetchArrestsFromAPI() ([]Arrest, error) {
     url := "https://www.sheriffleefl.org/public-api/bookings"
 
     client := &http.Client{
