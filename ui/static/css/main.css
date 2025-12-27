@@ -1,113 +1,113 @@
-    body {
-      margin: 0;
-      font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI",
-        Roboto, Helvetica, Arial, sans-serif;
-      background: #f5f5f5;
-      color: #222;
-    }
+body {
+  margin: 0;
+  font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI",
+  Roboto, Helvetica, Arial, sans-serif;
+  background: #f5f5f5;
+  color: #222;
+}
 
-    header {
-      background: #111;
-      color: #fff;
-      padding: 1rem;
-      display: flex;
-      align-items: center;
-      gap: 1rem;
-    }
+header {
+  background: #111;
+  color: #fff;
+  padding: 1rem;
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
 
-    header img {
-      height: 96px;
-      background-color: white;
-      border-radius: 5%;
-      width: auto;
-    }
+header img {
+  height: 96px;
+  background-color: white;
+  border-radius: 5%;
+  width: auto;
+}
 
-    header h1 {
-      font-size: 1.5rem;
-      margin: 0;
-    }
+header h1 {
+  font-size: 1.5rem;
+  margin: 0;
+}
 
-    main {
-      max-width: 1100px;
-      margin: 0 auto;
-      padding: 1rem;
-    }
+main {
+  max-width: 1100px;
+  margin: 0 auto;
+  padding: 1rem;
+}
 
-    .arrest-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
-      gap: 1rem;
-    }
+.arrest-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+  gap: 1rem;
+}
 
-    .arrest-card {
-      background: #fff;
-      border-radius: 6px;
-      box-shadow: 0 2px 6px rgba(0, 0, 0, 0.08);
-      overflow: hidden;
-      display: flex;
-      flex-direction: column;
-    }
+.arrest-card {
+  background: #fff;
+  border-radius: 6px;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.08);
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+}
 
-    .arrest-card img {
-      width: 100%;
-      height: 260px;
-      object-fit: cover;
-      background: #ddd;
-    }
+.arrest-card img {
+  width: 100%;
+  height: 260px;
+  object-fit: cover;
+  background: #ddd;
+}
 
-    .arrest-details {
-      padding: 0.75rem;
-    }
+.arrest-details {
+  padding: 0.75rem;
+}
 
-    .arrest-details h2 {
-      font-size: 1.1rem;
-      margin: 0 0 0.25rem 0;
-    }
+.arrest-details h2 {
+  font-size: 1.1rem;
+  margin: 0 0 0.25rem 0;
+}
 
-    .arrest-details p {
-      margin: 0.15rem 0;
-      font-size: 0.9rem;
-      color: #444;
-    }
+.arrest-details p {
+  margin: 0.15rem 0;
+  font-size: 0.9rem;
+  color: #444;
+}
 
-    footer {
-      margin-top: 2rem;
-      padding: 1rem;
-      font-size: 0.85rem;
-      color: #666;
-      text-align: center;
-    }
+footer {
+  margin-top: 2rem;
+  padding: 1rem;
+  font-size: 0.85rem;
+  color: #666;
+  text-align: center;
+}
 
-    footer span {
-      display: block;
-      max-width: 800px;
-      margin: 0 auto;
-    }
-
-
- .loading-container {
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      justify-content: center;
-    }
+footer span {
+  display: block;
+  max-width: 800px;
+  margin: 0 auto;
+}
 
 
-    .spinner {
-      width: 60px;
-      height: 60px;
-      border: 6px solid #ddd;
-      border-top-color: #111;
-      border-radius: 50%;
-      animation: spin 0.9s linear infinite;
-    }
+.loading-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
 
-    .loading-text {
-      margin-top: 1rem;
-      font-size: 0.95rem;
-      color: #555;
-      letter-spacing: 0.3px;
-    }
+
+.spinner {
+  width: 60px;
+  height: 60px;
+  border: 6px solid #ddd;
+  border-top-color: #111;
+  border-radius: 50%;
+  animation: spin 0.9s linear infinite;
+}
+
+.loading-text {
+  margin-top: 1rem;
+  font-size: 0.95rem;
+  color: #555;
+  letter-spacing: 0.3px;
+}
 
 @keyframes spin {
   to {
