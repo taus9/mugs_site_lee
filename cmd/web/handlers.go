@@ -2,7 +2,6 @@ package main
 
 import (
 	"encoding/json"
-	"fmt"
 	"html/template"
 	"net/http"
 	"strconv"
@@ -57,10 +56,53 @@ func (app *application) fetchArrestsFromBackend(w http.ResponseWriter, r *http.R
 }
 
 func (app *application) bookingView(w http.ResponseWriter, r *http.Request) {
-	id, err := strconv.Atoi(r.URL.Query().Get("id"))
+	id, err := strconv.Atoi(r.URL.Query().Get("number"))
 	if err != nil || id < 1 {
 		app.notFound(w)
 		return
 	}
-	fmt.Fprintf(w, "Booking id %d", id)
+	files := []string{
+		"./ui/html/partials/spinner.tmpl.html",
+		"./ui/html/pages/booking.tmpl.html",
+	}
+
+	ts, err := template.ParseFiles(files...)
+	if err != nil {
+		app.serverError(w, err)
+		return
+	}
+
+	err = ts.ExecuteTemplate(w, "booking", nil);
+	if err != nil {
+		app.serverError(w, err)
+	}
+}
+
+func (app *application) fetchSingleArrestFromBackend(w http.ResponseWriter, r *http.Request) {
+	bookingNumber, err := strconv.Atoi(r.URL.Query().Get("number"))
+	if err != nil || bookingNumber < 1 {
+		app.notFound(w)
+		return
+	}
+	
+	arrest, err := app.fetchSingleArrestFromAPI(bookingNumber)
+	if err != nil {
+		
+		if err.Error() == "404 Not Found" {
+			app.notFound(w)
+			return
+		}
+
+		app.serverError(w, err)
+		return
+	}
+	
+	fArrest := toViewModel(*arrest)
+	w.Header().Set("Content-Type", "application/json")
+	
+	err = json.NewEncoder(w).Encode(fArrest)
+	
+	if err != nil {
+		app.serverError(w, err)
+	}
 }

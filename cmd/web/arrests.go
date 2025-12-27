@@ -25,6 +25,31 @@ type ViewArrest struct {
     ImageBase64 string
 }
 
+func (app *application) fetchSingleArrestFromAPI(bookingNumber int) (*Arrest, error) {
+    url := fmt.Sprintf("https://www.sheriffleefl.org/public-api/bookings/%d", bookingNumber);
+
+    client := &http.Client{
+        Timeout: 10 * time.Second,
+    }
+
+    resp, err := client.Get(url)
+    if err != nil {
+        return nil, err
+    }
+    defer resp.Body.Close()
+
+    if resp.StatusCode != http.StatusOK {
+        return nil, fmt.Errorf("%s", resp.Status)
+    }
+
+    var arrest Arrest
+    if err := json.NewDecoder(resp.Body).Decode(&arrest); err != nil {
+        return nil, err
+    }
+
+    return &arrest, nil
+}
+
 func (app *application) fetchArrestsFromAPI() ([]Arrest, error) {
     url := "https://www.sheriffleefl.org/public-api/bookings"
 
