@@ -4,20 +4,10 @@ async function refreshMugs() {
         const arrests = await response.json();
         document.getElementById('spinner').style.display = 'none';
         // Update the mugs container
-        const container = document.getElementById('arrest-gird-container');
-        container.innerHTML = arrests.map(a => `
-            <div class="arrest-card">
-                <img 
-                    src="data:image/jpeg;base64,${a.ImageBase64}" 
-                    alt="${a.FullName}" 
-                />
-                <div class="arrest-details">
-                    <h2>${a.FullName}</h2>
-                    <p><strong>Age:</strong> ${a.Age}</p>
-                    <p><strong>Date:</strong> ${a.BookingDate}
-                </div>
-            </div>
-        `).join('');
+        const container = document.getElementById('arrest-grid-container');
+        arrests.forEach(a => {
+            container.appendChild(buildArrestCard(a));
+        });
     } catch (error) {
         console.error('Error fetching mugs:', error);
     }
@@ -40,6 +30,28 @@ function buildArrestCard(arrest) {
     const arrestDetails = document.createElement('div');
     arrestDetails.classList.add('arrest-details');
 
+    const fullName = document.createElement('h2');
+    fullName.textContent = arrest.FullName;
+
+    const age = document.createElement('p');
+    const ageStrong = document.createElement('strong');
+    ageStrong.textContent = 'Age:';
+    age.appendChild(ageStrong);
+    age.appendChild(document.createTextNode(` ${arrest.Age}`));
+
+    const date = document.createElement('p');
+    const dateStrong = document.createElement('strong');
+    dateStrong.textContent = 'Date:';
+    date.appendChild(dateStrong);
+    date.appendChild(document.createTextNode(` ${arrest.BookingDate}`));
+
+    arrestDetails.appendChild(fullName);
+    arrestDetails.appendChild(age);
+    arrestDetails.appendChild(date);
+
+    arrestCard.appendChild(arrestDetails);
+
+    return arrestCard;
 }
 
 refreshMugs();

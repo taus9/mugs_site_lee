@@ -20,7 +20,6 @@ func (app *application) home(w http.ResponseWriter, r *http.Request) {
 
 	files := []string{
 		"./ui/html/partials/spinner.tmpl.html",
-		"./ui/html/base.tmpl.html",
 		"./ui/html/pages/home.tmpl.html",
 	}
 
@@ -30,7 +29,7 @@ func (app *application) home(w http.ResponseWriter, r *http.Request) {
 		return
 	}
 
-	err = ts.ExecuteTemplate(w, "base", nil)
+	err = ts.ExecuteTemplate(w, "home", nil);
 	if err != nil {
 		app.serverError(w, err)
 	}
