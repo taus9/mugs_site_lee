@@ -11,7 +11,7 @@ async function loadCharges() {
 
     const charges = await response.json();
     hideSpinner('charges-spinner');
-    document.getElementById('charges-section').style.display = "flex";
+    document.getElementById('charges-section').style.display = "grid";
     const chargesList = document.getElementById('charges-list');
 
     charges.forEach(c => {
@@ -32,7 +32,7 @@ async function loadBooking() {
 
     const info = await response.json();
     hideSpinner('info-spinner');
-    document.getElementById('info-section').style.display = "grid";
+    document.getElementById('info-section').style.display = "flex";
     
     // populate booking information
     document.getElementById('booking-image').src = `data:image/jpeg;base64,${info.ImageBase64}`;
