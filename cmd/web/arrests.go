@@ -8,7 +8,6 @@ import (
 )
 
 type Arrest struct {
-    ID            string `json:"id"`
     BookingNumber string `json:"bookingNumber"`
     BookingDate   string `json:"bookingDate"`
     SurName       string `json:"surName"`
@@ -19,7 +18,7 @@ type Arrest struct {
 }
 
 type ViewArrest struct {
-    ID          string
+    BookingNumber        string
     FullName    string
     BookingDate string
     Age         int
@@ -58,7 +57,7 @@ func toViewModel(a Arrest) ViewArrest {
     }
     fullName += " " + a.SurName
     return ViewArrest{
-        ID: a.ID,
+        BookingNumber: a.BookingNumber,
         FullName: fullName,
         BookingDate: formatBookingDate(a.BookingDate),
         Age: calculateAge(a.BirthDate),
