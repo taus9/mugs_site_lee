@@ -106,3 +106,30 @@ func (app *application) fetchSingleArrestFromBackend(w http.ResponseWriter, r *h
 		app.serverError(w, err)
 	}
 }
+
+func (app *application) fetchChargesFromBackend(w http.ResponseWriter, r *http.Request) {
+	bookingNumber, err := strconv.Atoi(r.URL.Query().Get("number"))
+	if err != nil || bookingNumber < 1 {
+		app.notFound(w)
+		return
+	}
+
+	charges, err := app.fetchChargesFromAPI(bookingNumber)
+	if err != nil {
+		app.serverError(w, err)
+		return
+	}
+
+	fCharges := make([]ViewCharge, 0, len(charges))
+	for _, c := range charges {
+		fCharges = append(fCharges, toChargeViewModel(c))
+	}
+
+	w.Header().Set("Content-Type", "application/json")
+
+	err = json.NewEncoder(w).Encode(fCharges)
+
+	if err != nil {
+		app.serverError(w, err)
+	}	
+}

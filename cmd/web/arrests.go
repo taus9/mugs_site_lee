@@ -66,7 +66,7 @@ func (app *application) fetchArrestsFromAPI() ([]Arrest, error) {
 	defer resp.Body.Close()
 
 	if resp.StatusCode != http.StatusOK {
-		return nil, fmt.Errorf("bad status: %s", resp.Status)
+		return nil, fmt.Errorf("%s", resp.Status)
 	}
 
 	var arrests []Arrest
