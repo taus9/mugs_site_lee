@@ -27,7 +27,6 @@ COPY --from=builder /run-app /usr/local/bin/run-app
 
 # Copy templates and static files
 COPY --from=builder /usr/src/app/ui ./ui
-COPY --from=builder /usr/src/app/static ./static
 
 EXPOSE 8080
 
