@@ -24,6 +24,6 @@ WORKDIR /app
 COPY --from=builder /run-app /usr/local/bin/run-app
 
 EXPOSE 8080
-CMD ["run-app", "--addr", "0.0.0.0:$PORT"]
+CMD ["run-app"]
 
 
