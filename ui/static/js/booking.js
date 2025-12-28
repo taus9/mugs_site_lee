@@ -64,7 +64,7 @@ function buildChargeCard(charge) {
     
     const bondLabel = document.createElement('span');
     bondLabel.classList.add('label');
-    bondLabel.textContent = 'Bond Amount';
+    bondLabel.textContent = 'Bond Amount: ';
 
     const bondSpan = document.createElement('span');
     bondSpan.textContent = charge.BondAmount !== '' 
@@ -75,7 +75,7 @@ function buildChargeCard(charge) {
     
     const caseLabel = document.createElement('span');
     caseLabel.classList.add('label');
-    caseLabel.textContent = 'Case Number';
+    caseLabel.textContent = 'Case Number: ';
 
     const caseSpan = document.createElement('span');
     caseSpan.textContent = charge.CaseNumber;
@@ -84,7 +84,7 @@ function buildChargeCard(charge) {
     
     const agencyLabel = document.createElement('span');
     agencyLabel.classList.add('label');
-    agencyLabel.textContent = 'Arresting Agency';
+    agencyLabel.textContent = 'Arresting Agency: ';
 
     const agencySpan = document.createElement('span');
     agencySpan.textContent = charge.ArrestingAgencyName !== ''
