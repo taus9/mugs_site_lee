@@ -30,6 +30,10 @@ function buildArrestCard(arrest) {
     // create card container
     const arrestCard = document.createElement('div');
     arrestCard.classList.add('arrest-card');
+    arrestCard.id = arrest.BookingNumber;
+    arrestCard.addEventListener('click', () => {
+        window.location.href = `/booking?number=${arrest.BookingNumber}`;
+    });
     
     // create mugshot image
     const img = document.createElement('img');
