@@ -39,7 +39,6 @@ go run ./cmd/web -addr=":9090"
 │       ├── helpers.go        # Reusable HTTP error helpers
 │       ├── main.go           # App wiring and server startup
 │       └── routes.go         # Route registration
-├── internal/                 # Reserved for future server-side packages
 ├── ui/
 │   ├── html/
 │   │   ├── pages/            # Page templates (home, booking)
@@ -52,7 +51,8 @@ go run ./cmd/web -addr=":9090"
 ├── Dockerfile                # Container build instructions
 ├── fly.toml                  # Fly.io deployment config (if used)
 ├── go.mod                    # Module definition and Go version
-└── LICENSE
+├── LICENSE
+└── README.md
 ```
 
 ### Deployment Notes
