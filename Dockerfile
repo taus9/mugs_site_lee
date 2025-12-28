@@ -22,6 +22,9 @@ FROM debian:bookworm
 
 WORKDIR /app
 
+# Install CA certificates
+RUN apt-get update && apt-get install -y ca-certificates && rm -rf /var/lib/apt/lists/*
+
 # Copy the binary
 COPY --from=builder /run-app /usr/local/bin/run-app
 
