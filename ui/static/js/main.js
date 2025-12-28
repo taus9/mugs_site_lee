@@ -37,7 +37,9 @@ function buildArrestCard(arrest) {
     
     // create mugshot image
     const img = document.createElement('img');
-    img.src = `data:image/jpeg;base64,${arrest.ImageBase64}`;
+    img.src = arrest.ImageBase64 !== '' 
+        ? `data:image/jpeg;base64,${arrest.ImageBase64}`
+        : '/static/img/placeholder.jpeg';
     img.alt = arrest.FullName;
 
     // add mugshot image to arrest-card

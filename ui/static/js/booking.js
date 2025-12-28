@@ -35,7 +35,10 @@ async function loadBooking() {
     document.getElementById('info-section').style.display = "flex";
     
     // populate booking information
-    document.getElementById('booking-image').src = `data:image/jpeg;base64,${info.ImageBase64}`;
+    const img = info.ImageBase64 !== ''
+        ? `data:image/jpeg;base64,${info.ImageBase64}`
+        : '/static/img/placeholder.jpeg';
+    document.getElementById('booking-image').src = img;
     document.getElementById('booking-full-name').textContent = info.FullName;
     document.getElementById('booking-age').textContent = info.Age;
     document.getElementById('booking-date').textContent = info.BookingDate;
