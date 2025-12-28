@@ -1,3 +1,4 @@
+# ---- Builder ----
 ARG GO_VERSION=1.25.4
 FROM golang:${GO_VERSION}-bookworm AS builder
 
@@ -21,9 +22,14 @@ FROM debian:bookworm
 
 WORKDIR /app
 
+# Copy the binary
 COPY --from=builder /run-app /usr/local/bin/run-app
 
+# Copy templates and static files
+COPY --from=builder /usr/src/app/ui ./ui
+COPY --from=builder /usr/src/app/static ./static
+
 EXPOSE 8080
+
+# Use Fly.io PORT environment variable
 CMD ["run-app"]
-
-
